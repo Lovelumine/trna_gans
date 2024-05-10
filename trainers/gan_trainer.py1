@@ -1,0 +1,23 @@
+# trainers/gan_trainer.py
+from trainers.training_loop import train_gan
+import torch
+
+generator_config = {
+    'input_size': 100,
+    'hidden_size': 256,
+    'output_size': 7,
+    'sequence_feature_size': 128
+}
+
+discriminator_config = {
+    'input_feature_dim': 4,
+    'hidden_dim': 256
+}
+
+learning_rate = 2e-4
+batch_size = 32
+num_epochs = 100
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+data_loader_cache_path = '../data/data_loader_cache'
+
+train_gan(generator_config, discriminator_config, data_loader_cache_path, learning_rate, batch_size, num_epochs, device)
